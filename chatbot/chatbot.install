@@ -1,0 +1,111 @@
+<?php
+
+/**
+  * @file
+  * Installation function for chatbot module.
+  */
+
+use Drupal\user\RoleInterface;
+
+/**
+  * Implements hook_install().
+  */
+
+function chatbot_install() {
+	user_role_change_permissions(RoleInterface::ANONYMOUS_ID,
+	array(
+		'view chatbot page' => TRUE,
+	));
+}
+
+
+// istalls the db table for the chathistory 
+function chatbot_schema() {
+	$schema['chatbot__history'] = array(
+		'description' => 'Store the history of the chabot for each user',
+		'fields' => array(
+			// 'id' => array(
+   //      		'description' => 'The primary identifier for the record.',
+   //      		'type' => 'serial',
+   //      		'unsigned' => TRUE,
+   //      		'not null' => TRUE,
+   //    		),
+      		'uid' => array(
+		        'description' => 'The {users}.uid that added this rsvp.',
+		        'type' => 'int',
+		        'not null' => TRUE,
+		        'default' => 0,
+		      ),
+      		'history' => array(
+		        'description' => 'Users history on the chatbot',
+		        'type' => 'varchar',
+		        'length' => 7000,
+		        'not null' => FALSE,
+		        'default' => '',
+      		),
+      		'lastentry' => array(
+		        'description' => 'Last entry into the chatbot',
+		        'type' => 'varchar',
+		        'length' => 7000,
+		        'not null' => FALSE,
+		        'default' => '',
+      		),
+      		'updated' => array(
+		        'type' => 'int',
+		        'not null' => TRUE,
+		        'default' => 0,
+		        'description' => 'Timestamp for when history was last updated.',
+		      ),
+		),
+		'primary key' => array('uid'),
+	);
+	// db table for the keyword mapping
+	$schema['chatbot__keywords'] = array(
+		'description' => 'Maps keywords to functions',
+		'fields' => array(
+			'keyword' => array(
+				'description' => 'keyword to map',
+		        'type' => 'varchar',
+		        'length' => 50,
+		        'not null' => TRUE,
+			),
+			'function' => array(
+				'description' => 'name of function being mapped to',
+		        'type' => 'varchar',
+		        'length' => 100,
+		        'not null' => TRUE,
+		        'default' => 'random',
+			),
+		),
+		'primary key' => array('keyword'),
+	);
+	// db for the function to response
+	$schema['chatbot__response'] = array(
+		'description' => 'Table for the function and response',
+		'fields' => array(
+			'id' => array(
+        		'description' => 'The primary identifier for the record.',
+        		'type' => 'serial',
+        		'unsigned' => TRUE,
+        		'not null' => TRUE,
+      		),
+			'function' => array(
+				'description' => 'function associated with response',
+		        'type' => 'varchar',
+		        'length' => 7000,
+		        'not null' => TRUE,
+		        'default' => 'random',
+			),
+			'response' => array(
+				'description' => 'one response of function',
+		        'type' => 'varchar',
+		        'length' => 7000,
+		        'not null' => TRUE,
+		        'default' => 'Random Response Default',
+			),
+		),
+		'primary key' => array('id'),
+	);
+
+	return $schema;
+}

@@ -1,0 +1,15 @@
+chatbot.chat:
+  path: '/chatbot'
+  defaults:
+    _controller: '\Drupal\chatbot\Controller\ChatbotController::chat'
+    _title: 'Chatbot'
+  requirements:
+    _permission: 'view chatbot page'
+
+chatbot.admin_settings:
+  path: '/admin/config/content/chatbot'
+  defaults:
+    _form: '\Drupal\chatbot\Form\SettingsForm'
+    _title: 'Chatbot Settings'
+  requirements:
+    _permission: 'administer chatbot'

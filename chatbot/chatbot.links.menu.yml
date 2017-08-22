@@ -1,0 +1,13 @@
+chatbot.page:
+  title: "Chatbot"
+  description: "Link to the chatbot page"
+  route_name: chatbot.chat
+  weight: 10
+  menu_name: main
+
+chatbot.admin:
+  title: "Chatbot module settings"
+  description: 'Control the Chatbot settings(keywords/responses)'
+  parent: system.admin_config_development
+  route_name: chatbot.admin_settings
+  weight: 100

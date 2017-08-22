@@ -1,0 +1,9 @@
+chatbot-history:
+  version: 1.x
+  css:
+    layout:
+      css/chatbot-history-layout.css: {}
+  js:
+    js/chatbot-history.js: {}
+  dependencies:
+    - core/jquery

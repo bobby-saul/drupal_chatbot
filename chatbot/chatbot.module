@@ -1,0 +1,24 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+  * Implements hook_help().
+  */
+function chatbot_help($route_name, RouteMatchInterface $route_match) {
+	switch ($route_name) {
+		case 'help.page.chatbot':
+			return t('
+				<h2>Chatbot for Drupal </h2>
+				<p>Go to \'/chatbot\' to use chatbot or add in a block region.</p>
+				<p>The user should type into the textbox and when entered a response is generated.</p>
+				<p>The history of submissions is recorded with a scrollable field.</p><br>
+				<ul><strong>Predefined key words are:</strong>
+					<li>?</li>
+					<li>help</li>
+					<li>clear</li>
+				</ul>
+			');
+			break;
+	}
+}

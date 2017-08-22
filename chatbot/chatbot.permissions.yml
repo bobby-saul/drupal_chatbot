@@ -1,0 +1,8 @@
+'view chatbot page':
+  title: 'view /chatbot'
+  description: 'set who can view the specific page for the chat bot'
+
+'administer chatbot':
+  title: 'Administer Chatbot Settings'
+  description: 'Access the Chatbot administrative settings page'
+  restrict access: true

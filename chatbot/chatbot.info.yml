@@ -1,0 +1,10 @@
+name: Chatbot Module
+description: Creates a chatbot page and a chatbot block
+package: Custom
+
+type: module 
+core: 8.x
+
+dependencies:
+  - block
+  
